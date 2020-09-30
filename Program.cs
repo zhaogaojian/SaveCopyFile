@@ -19,11 +19,13 @@ namespace SaveCopyFile
                 string tempPath = srcFile.Replace(srcDir, "");
                 try
                 {
-                    if(!Directory.Exists(destDir))
+                    string destFile = destDir + tempPath;
+                    string destFileDirectory=Path.GetDirectoryName(destFile);
+                    if (!Directory.Exists(destFileDirectory))
                     {
-                        Directory.CreateDirectory(destDir);
+                        Directory.CreateDirectory(destFileDirectory);
                     }
-                    File.Copy(srcFile, destDir + tempPath, true);
+                    File.Copy(srcFile, destFile, true);
                 }
                 catch (Exception)
                 {
