@@ -12,17 +12,26 @@ namespace SaveCopyFile
         {
             string srcDir = args[0];
             string srcFile = args[1];
-            string destDir = args[2];
-            string tempPath=srcFile.Replace(srcDir, "");
-            try
+            //支持多个目标文件夹
+            for (int i = 2; i < args.Length; i++)
             {
-                File.Copy(srcFile, destDir + tempPath,true);
-            }
-            catch (Exception)
-            {
+                string destDir = args[2];
+                string tempPath = srcFile.Replace(srcDir, "");
+                try
+                {
+                    if(!Directory.Exists(destDir))
+                    {
+                        Directory.CreateDirectory(destDir);
+                    }
+                    File.Copy(srcFile, destDir + tempPath, true);
+                }
+                catch (Exception)
+                {
 
-                throw;
+                    throw;
+                }
             }
+            
         }
     }
 }
