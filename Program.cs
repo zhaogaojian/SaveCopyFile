@@ -20,6 +20,7 @@ namespace SaveCopyFile
                 try
                 {
                     string destFile = destDir + tempPath;
+                    if (destFile == srcFile) continue;//目标目录中修改自己不拷贝
                     string destFileDirectory=Path.GetDirectoryName(destFile);
                     if (!Directory.Exists(destFileDirectory))
                     {
@@ -27,10 +28,10 @@ namespace SaveCopyFile
                     }
                     File.Copy(srcFile, destFile, true);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    throw;
+                    //throw;
                 }
             }
             
