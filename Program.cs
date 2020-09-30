@@ -15,7 +15,7 @@ namespace SaveCopyFile
             //支持多个目标文件夹
             for (int i = 2; i < args.Length; i++)
             {
-                string destDir = args[2];
+                string destDir = args[i];
                 string tempPath = srcFile.Replace(srcDir, "");
                 try
                 {
